@@ -8,7 +8,7 @@ import { env } from '../../config'
 const roles = ['user', 'admin']
 
 const userSchema = new Schema({
-  email: {
+  email: { 
     type: String,
     match: /^\S+@\S+\.\S+$/,
     required: true,
@@ -39,6 +39,11 @@ const userSchema = new Schema({
   picture: {
     type: String,
     trim: true
+  },
+  activated:{
+    type:String,
+    required:true,
+    default:false,
   }
 }, {
   timestamps: true
@@ -72,7 +77,7 @@ userSchema.pre('save', function (next) {
 userSchema.methods = {
   view (full) {
     const view = {}
-    let fields = ['id', 'name', 'picture']
+    let fields = ['id', 'name', 'picture', 'activated']
 
     if (full) {
       fields = [...fields, 'email', 'createdAt']
@@ -98,7 +103,7 @@ userSchema.statics = {
         user.services[service] = id
         user.name = name
         user.picture = picture
-        return user.save()
+        return user.save() 
       } else {
         const password = randtoken.generate(16)
         return this.create({ services: { [service]: id }, email, password, name, picture })

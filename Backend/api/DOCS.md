@@ -2,11 +2,25 @@
 
 
 
+- [Activator](#activator)
+	- [Create activator](#create-activator)
+	- [Delete activator](#delete-activator)
+	- [Retrieve activator](#retrieve-activator)
+	- [Retrieve activators](#retrieve-activators)
+	- [Update activator](#update-activator)
+	
 - [Auth](#auth)
 	- [Authenticate](#authenticate)
 	- [Authenticate with Facebook](#authenticate-with-facebook)
 	- [Authenticate with Github](#authenticate-with-github)
 	- [Authenticate with Google](#authenticate-with-google)
+	
+- [Parcelle](#parcelle)
+	- [Create parcelle](#create-parcelle)
+	- [Delete parcelle](#delete-parcelle)
+	- [Retrieve parcelle](#retrieve-parcelle)
+	- [Retrieve parcelles](#retrieve-parcelles)
+	- [Update parcelle](#update-parcelle)
 	
 - [PasswordReset](#passwordreset)
 	- [Send email](#send-email)
@@ -23,6 +37,77 @@
 	- [Update user](#update-user)
 	
 
+
+# Activator
+
+## Create activator
+
+
+
+	POST /activators
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+| fakeToken			| 			|  <p>Activator's fakeToken.</p>							|
+| email			| 			|  <p>Activator's email.</p>							|
+| verified			| 			|  <p>Activator's verified.</p>							|
+
+## Delete activator
+
+
+
+	DELETE /activators/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+
+## Retrieve activator
+
+
+
+	GET /activators/:id
+
+
+## Retrieve activators
+
+
+
+	GET /activators
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update activator
+
+
+
+	PUT /activators/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+| fakeToken			| 			|  <p>Activator's fakeToken.</p>							|
+| email			| 			|  <p>Activator's email.</p>							|
+| verified			| 			|  <p>Activator's verified.</p>							|
 
 # Auth
 
@@ -82,6 +167,77 @@
 | Name    | Type      | Description                          |
 |---------|-----------|--------------------------------------|
 | access_token			| String			|  <p>Google user accessToken.</p>							|
+
+# Parcelle
+
+## Create parcelle
+
+
+
+	POST /parcelles
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+| position			| 			|  <p>Parcelle's position.</p>							|
+| proprietaire			| 			|  <p>Parcelle's proprietaire.</p>							|
+| nature			| 			|  <p>Parcelle's nature.</p>							|
+
+## Delete parcelle
+
+
+
+	DELETE /parcelles/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+
+## Retrieve parcelle
+
+
+
+	GET /parcelles/:id
+
+
+## Retrieve parcelles
+
+
+
+	GET /parcelles
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| q			| String			| **optional** <p>Query to search.</p>							|
+| page			| Number			| **optional** <p>Page number.</p>							|
+| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
+| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
+| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
+
+## Update parcelle
+
+
+
+	PUT /parcelles/:id
+
+
+### Parameters
+
+| Name    | Type      | Description                          |
+|---------|-----------|--------------------------------------|
+| access_token			| String			|  <p>master access token.</p>							|
+| position			| 			|  <p>Parcelle's position.</p>							|
+| proprietaire			| 			|  <p>Parcelle's proprietaire.</p>							|
+| nature			| 			|  <p>Parcelle's nature.</p>							|
 
 # PasswordReset
 

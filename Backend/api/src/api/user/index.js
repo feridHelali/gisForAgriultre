@@ -2,7 +2,7 @@ import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
 import { password as passwordAuth, master, token } from '../../services/passport'
-import { index, showMe, show, create, update, updatePassword, destroy } from './controller'
+import { index, showMe, show, create, update, updatePassword, destroy, verify } from './controller'
 import { schema } from './model'
 export User, { schema } from './model'
 
@@ -10,7 +10,7 @@ const router = new Router()
 const { email, password, name, picture, role } = schema.tree
 
 /**
- * @api {get} /users Retrieve users
+ * @api {get} /users Retrieve users 
  * @apiName RetrieveUsers
  * @apiGroup User
  * @apiPermission admin
@@ -47,7 +47,15 @@ router.get('/me',
  */
 router.get('/:id',
   show)
-
+/**
+ * @api {get} /users/verify Retrieve user
+ * @apiName verifyEmail
+ * @apiGroup User
+ * @apiPermission public
+ * @apiSuccess sendMail
+ * @apiError 404 User not found.
+ */
+router.get('/verify', )
 /**
  * @api {post} /users Create user
  * @apiName CreateUser

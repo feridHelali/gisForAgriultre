@@ -9,7 +9,7 @@ const router = new Router()
 const { email, password } = schema.tree
 
 /**
- * @api {post} /password-resets Send email
+ * @api {post} /password-resets Send email 
  * @apiName SendPasswordReset
  * @apiGroup PasswordReset
  * @apiPermission master
@@ -26,7 +26,7 @@ router.post('/',
 /**
  * @api {get} /password-resets/:token Verify token
  * @apiName VerifyPasswordReset
- * @apiGroup PasswordReset
+ * @apiGroup PasswordReset 
  * @apiSuccess {String} token Password reset token.
  * @apiSuccess {Object} user User's data.
  * @apiError 404 Token has expired or doesn't exist.

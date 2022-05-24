@@ -9,7 +9,7 @@ export const create = ({ bodymen: { body: { email, link } } }, res, next) =>
     .then((user) => user ? PasswordReset.create({ user }) : null)
     .then((reset) => {
       if (!reset) return null
-      const { user, token } = reset
+      const { user, token } = reset 
       link = `${link.replace(/\/$/, '')}/${token}`
       const content = `
         Hey, ${user.name}.<br><br>

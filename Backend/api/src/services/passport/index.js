@@ -1,4 +1,4 @@
-import passport from 'passport'
+import passport from 'passport' 
 import { Schema } from 'bodymen'
 import { BasicStrategy } from 'passport-http'
 import { Strategy as BearerStrategy } from 'passport-http-bearer'
