@@ -11,7 +11,7 @@ const { email, password, name, picture, role } = schema.tree
 
 /**
  * @api {get} /users Retrieve users 
- * @apiName RetrieveUsers
+ * @apiName RetrieveUsers 
  * @apiGroup User
  * @apiPermission admin
  * @apiParam {String} access_token User access_token.
@@ -23,7 +23,7 @@ const { email, password, name, picture, role } = schema.tree
 router.get('/',
   token({ required: true, roles: ['admin'] }),
   query(),
-  index)
+  index) 
 
 /**
  * @api {get} /users/me Retrieve current user
@@ -47,15 +47,7 @@ router.get('/me',
  */
 router.get('/:id',
   show)
-/**
- * @api {get} /users/verify Retrieve user
- * @apiName verifyEmail
- * @apiGroup User
- * @apiPermission public
- * @apiSuccess sendMail
- * @apiError 404 User not found.
- */
-router.get('/verify', )
+
 /**
  * @api {post} /users Create user
  * @apiName CreateUser

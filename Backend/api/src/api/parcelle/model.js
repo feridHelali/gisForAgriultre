@@ -1,14 +1,23 @@
 import mongoose, { Schema } from 'mongoose'
 
+
 const parcelleSchema = new Schema({
-  position: {
-    type: String
+  user:{
+    type: Schema.ObjectId, 
+    ref: 'User',
+    index: true
   },
   proprietaire: {
-    type: String
+    type: String,
+    required:true
+  },
+  position: { 
+    type: String,
+    required:true
   },
   nature: {
-    type: String
+    type: String,
+    required:true
   }
 }, {
   timestamps: true,

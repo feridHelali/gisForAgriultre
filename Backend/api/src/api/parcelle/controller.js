@@ -1,5 +1,6 @@
 import { success, notFound } from '../../services/response/'
-import { Parcelle } from '.'
+import { Parcelle } from '.';
+
 
 // export const create = ({ bodymen: { body } }, res, next) =>
 //   Parcelle.create(body)
@@ -7,17 +8,24 @@ import { Parcelle } from '.'
 //     .then(success(res, 201))
 //     .catch(next)
 
-export const create=async ({bodymen:{body}}, res, next) =>{
-  try{
-    let parcelle=await Parcelle.create(body);
-    if(parcelle){
-      await(async (parcelle)=>{
-        success(res, 201)(parcelle.view(true))
-      })(parcelle);
-    }
-  }catch(err){
-    next(err);
-  }  
+export const create=async (req, res, next) =>{
+  // res.json({message:req.user});
+  console.log("-------------------------------\n",req.user)
+  if(req.user){
+    try{
+      let parcelle=await Parcelle.create(req.body);
+      if(parcelle){
+        await(async (parcelle)=>{
+          success(res, 201)(parcelle.view(true))
+        })(parcelle);
+      }
+    }catch(err){
+      next(err);
+    } 
+  }else{
+    notFound(res);
+  }
+   
 }
 
 export const index = ({ querymen: { query, select, cursor } }, res, next) =>

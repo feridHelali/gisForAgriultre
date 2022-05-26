@@ -2,13 +2,6 @@
 
 
 
-- [Activator](#activator)
-	- [Create activator](#create-activator)
-	- [Delete activator](#delete-activator)
-	- [Retrieve activator](#retrieve-activator)
-	- [Retrieve activators](#retrieve-activators)
-	- [Update activator](#update-activator)
-	
 - [Auth](#auth)
 	- [Authenticate](#authenticate)
 	- [Authenticate with Facebook](#authenticate-with-facebook)
@@ -35,79 +28,9 @@
 	- [Retrieve users](#retrieve-users)
 	- [Update password](#update-password)
 	- [Update user](#update-user)
+	- [Retrieve user](#retrieve-user)
 	
 
-
-# Activator
-
-## Create activator
-
-
-
-	POST /activators
-
-
-### Parameters
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>master access token.</p>							|
-| fakeToken			| 			|  <p>Activator's fakeToken.</p>							|
-| email			| 			|  <p>Activator's email.</p>							|
-| verified			| 			|  <p>Activator's verified.</p>							|
-
-## Delete activator
-
-
-
-	DELETE /activators/:id
-
-
-### Parameters
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>master access token.</p>							|
-
-## Retrieve activator
-
-
-
-	GET /activators/:id
-
-
-## Retrieve activators
-
-
-
-	GET /activators
-
-
-### Parameters
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| q			| String			| **optional** <p>Query to search.</p>							|
-| page			| Number			| **optional** <p>Page number.</p>							|
-| limit			| Number			| **optional** <p>Amount of returned items.</p>							|
-| sort			| String[]			| **optional** <p>Order of returned items.</p>							|
-| fields			| String[]			| **optional** <p>Fields to be returned.</p>							|
-
-## Update activator
-
-
-
-	PUT /activators/:id
-
-
-### Parameters
-
-| Name    | Type      | Description                          |
-|---------|-----------|--------------------------------------|
-| access_token			| String			|  <p>master access token.</p>							|
-| fakeToken			| 			|  <p>Activator's fakeToken.</p>							|
-| email			| 			|  <p>Activator's email.</p>							|
-| verified			| 			|  <p>Activator's verified.</p>							|
 
 # Auth
 
@@ -378,5 +301,12 @@
 | access_token			| String			|  <p>User access_token.</p>							|
 | name			| String			| **optional** <p>User's name.</p>							|
 | picture			| String			| **optional** <p>User's picture.</p>							|
+
+## Retrieve user
+
+
+
+	GET /users/verify
+
 
 

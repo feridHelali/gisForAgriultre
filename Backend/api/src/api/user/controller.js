@@ -27,7 +27,7 @@ export const showMe = ({ user }, res) => res.json(user.view(true));
 // export const create = ({ bodymen: { body } }, res, next) =>
 //   User.create(body)
 //     .then(user => {
-//       sign(user.id)
+//       sign(user.id) 
 //         .then((token) => ({ token, user: user.view(true) }))
 //         .then(success(res, 201))
 //     })
@@ -130,7 +130,7 @@ export const update = ({ bodymen: { body }, params, user }, res, next) =>
       if (!result) return null;
       const isAdmin = user.role === "admin";
       const isSelfUpdate = user.id === result.id;
-      if (!isSelfUpdate && !isAdmin) {
+      if (!isSelfUpdate && !isAdmin) { 
         res.status(401).json({
           valid: false,
           message: "You can't change other user's data",

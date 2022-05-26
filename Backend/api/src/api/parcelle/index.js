@@ -1,13 +1,14 @@
 import { Router } from 'express'
 import { middleware as query } from 'querymen'
 import { middleware as body } from 'bodymen'
-import { master } from '../../services/passport'
+import { master , token} from '../../services/passport'
 import { create, index, show, update, destroy } from './controller'
 import { schema } from './model'
+
 export Parcelle, { schema } from './model'
 
 const router = new Router()
-const { position, proprietaire, nature } = schema.tree
+const { proprietaire, position, nature } = schema.tree
 
 /**
  * @api {post} /parcelles Create parcelle
@@ -24,11 +25,11 @@ const { position, proprietaire, nature } = schema.tree
  * @apiError 401 master access only.
  */
 router.post('/',
-  master(),
-  body({ position, proprietaire, nature }),
+  body({proprietaire:{required:true}, position:{required:true}, nature:{required:true}}),
+  token({ required: true, roles: ['user']}),
   create)
 
-/**
+/** 
  * @api {get} /parcelles Retrieve parcelles
  * @apiName RetrieveParcelles
  * @apiGroup Parcelle

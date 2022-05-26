@@ -6,7 +6,7 @@ import { User } from '../user'
 export const create = ({ bodymen: { body: { email, link } } }, res, next) =>
   User.findOne({ email })
     .then(notFound(res))
-    .then((user) => user ? PasswordReset.create({ user }) : null)
+    .then((user) => user ? PasswordReset.create({ user }) : null) 
     .then((reset) => {
       if (!reset) return null
       const { user, token } = reset 
@@ -26,11 +26,11 @@ export const create = ({ bodymen: { body: { email, link } } }, res, next) =>
 
 export const show = ({ params: { token } }, res, next) =>
   PasswordReset.findOne({ token })
-    .populate('user')
+    .populate('user') 
     .then(notFound(res))
     .then((reset) => reset ? reset.view(true) : null)
     .then(success(res))
-    .catch(next)
+    .catch(next) 
 
 export const update = ({ params: { token }, bodymen: { body: { password } } }, res, next) => {
   return PasswordReset.findOne({ token })
