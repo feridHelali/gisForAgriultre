@@ -1,14 +1,14 @@
-import { Router } from 'express'
-import { middleware as query } from 'querymen'
-import { middleware as body } from 'bodymen'
-import { master , token} from '../../services/passport'
-import { create, index, show, update, destroy } from './controller'
-import { schema } from './model'
+import { Router } from "express";
+import { middleware as query } from "querymen";
+import { middleware as body } from "bodymen";
+import { master, token } from "../../services/passport";
+import { create, index, show, update, destroy, showMyAreas } from "./controller";
+import { schema } from "./model";
 
-export Parcelle, { schema } from './model'
+export Parcelle, { schema } from "./model";
 
-const router = new Router()
-const { proprietaire, position, nature } = schema.tree
+const router = new Router();
+const { proprietaire, position, nature } = schema.tree;
 
 /**
  * @api {post} /parcelles Create parcelle
@@ -24,12 +24,14 @@ const { proprietaire, position, nature } = schema.tree
  * @apiError 404 Parcelle not found.
  * @apiError 401 master access only.
  */
-router.post('/',
-  body({proprietaire:{required:true}, position:{required:true}, nature:{required:true}}),
-  token({ required: true, roles: ['user']}),
-  create)
+router.post(
+  "/",
+  body(proprietaire, position, nature),
+  token({ required: true, roles: ["user"] }),
+  create
+);
 
-/** 
+/**
  * @api {get} /parcelles Retrieve parcelles
  * @apiName RetrieveParcelles
  * @apiGroup Parcelle
@@ -38,9 +40,12 @@ router.post('/',
  * @apiSuccess {Object[]} rows List of parcelles.
  * @apiError {Object} 400 Some parameters may contain invalid values.
  */
-router.get('/',
+router.get(
+  "/",
   query(),
-  index)
+  token({ required: true, roles: ["admin"] }),
+  index
+);
 
 /**
  * @api {get} /parcelles/:id Retrieve parcelle
@@ -50,8 +55,14 @@ router.get('/',
  * @apiError {Object} 400 Some parameters may contain invalid values.
  * @apiError 404 Parcelle not found.
  */
-router.get('/:id',
-  show)
+router.get("/:id", token({ required: true, roles: ["user"] }), show);
+
+//
+ router.get("/my/areas",
+ token({ required: true, roles: ["user"] }),
+ showMyAreas
+);
+
 
 /**
  * @api {put} /parcelles/:id Update parcelle
@@ -67,10 +78,11 @@ router.get('/:id',
  * @apiError 404 Parcelle not found.
  * @apiError 401 master access only.
  */
-router.put('/:id',
-  master(),
+router.put("/:id",
+  token({ required: true, roles: ["user"] }),
   body({ position, proprietaire, nature }),
-  update)
+  update
+);
 
 /**
  * @api {delete} /parcelles/:id Delete parcelle
@@ -82,8 +94,8 @@ router.put('/:id',
  * @apiError 404 Parcelle not found.
  * @apiError 401 master access only.
  */
-router.delete('/:id',
-  master(),
-  destroy)
+router.delete("/:id", 
+token({ required: true, roles: ["user"] }), 
+destroy);
 
-export default router
+export default router;

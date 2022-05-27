@@ -9,9 +9,9 @@ import { Parcelle } from '.';
 //     .catch(next)
 
 export const create=async (req, res, next) =>{
-  // res.json({message:req.user});
   console.log("-------------------------------\n",req.user)
   if(req.user){
+    req.body.user=req.user._id;
     try{
       let parcelle=await Parcelle.create(req.body);
       if(parcelle){
@@ -38,14 +38,30 @@ export const index = ({ querymen: { query, select, cursor } }, res, next) =>
     )
     .then(success(res))
     .catch(next)
-
+    
+//SHOW
 export const show = ({ params }, res, next) =>
-  Parcelle.findById(params.id)
+  Parcelle.findOne({_id:params.id})
     .then(notFound(res))
     .then((parcelle) => parcelle ? parcelle.view() : null)
     .then(success(res))
     .catch(next)
 
+//END SHOW
+export const showMyAreas=async (req, res, next) =>{
+  try{
+    let myAreas=await Parcelle.find({user:req.user._id});
+    if(myAreas){
+      success(res, 200)(myAreas)
+    }else{
+      notFound();
+    }
+  }catch(e){
+      res.json({message:e.message})
+  }
+  
+  
+}
 export const update = ({ bodymen: { body }, params }, res, next) =>
   Parcelle.findById(params.id)
     .then(notFound(res))

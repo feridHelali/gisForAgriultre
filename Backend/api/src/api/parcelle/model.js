@@ -38,8 +38,8 @@ parcelleSchema.methods = {
       createdAt: this.createdAt,
       updatedAt: this.updatedAt
     }
-
-    return full ? {
+ 
+    return full ? { 
       ...view
       // add properties for a full view
     } : view
